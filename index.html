@@ -1,92 +1,85 @@
-
-
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Seni Seviyorum ❤️</title>
+<title>Seni Seviyorum</title>
 
 <style>
 html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  background: #0b0014;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+
+    /* ARKA PLAN FOTO */
+    background: url("arka.jpg.png") no-repeat center center fixed;
+    background-size: cover;
 }
 
-/* Hareketli kalp arka plan */
-.hearts {
-  position: fixed;
-  inset: 0;
-  background-image: url("https://i.imgur.com/8QfQKZk.png");
-  background-size: 120px;
-  opacity: 0.35;
-  animation: heartsMove 40s linear infinite;
+/* KAYAN YAZILAR */
+.love-text {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff3366;
+    text-shadow: 0 0 10px #ff0033;
+    animation: move linear infinite;
 }
 
-@keyframes heartsMove {
-  from { background-position: 0 0; }
-  to { background-position: 0 -3000px; }
+@keyframes move {
+    from { transform: translateX(100vw); }
+    to { transform: translateX(-120vw); }
 }
 
-/* Yazı alanı */
-.texts {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-/* SENİ SEVİYORUM yazıları */
-.love {
-  font-size: 32px;
-  font-weight: bold;
-  margin: 20px;
-  background: linear-gradient(90deg, purple, red);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: float 6s linear infinite;
-  white-space: nowrap;
+/* UÇAN KALPLER */
+.heart {
+    position: absolute;
+    color: rgba(255, 0, 100, 0.9);
+    animation: float linear infinite;
 }
 
 @keyframes float {
-  0% { transform: translateX(-120%); opacity: 0; }
-  10% { opacity: 1; }
-  100% { transform: translateX(120%); opacity: 0; }
+    from { transform: translateY(110vh); }
+    to { transform: translateY(-10vh); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="hearts"></div>
-
-<div class="texts">
-  <div class="love">SENİ SEVİYORUM ❤️</div>
-  <div class="love">SENİ SEVİYORUM ❤️</div>
-  <div class="love">SENİ SEVİYORUM ❤️</div>
-  <div class="love">SENİ SEVİYORUM ❤️</div>
-  <div class="love">SENİ SEVİYORUM ❤️</div>
-  <div class="love">SENİ SEVİYORUM ❤️</div>
-  <div class="love">SENİ SEVİYORUM ❤️</div>
-  <div class="love">SENİ SEVİYORUM ❤️</div>
-</div>
-
-<!-- Müzik -->
-<audio id="music" src="ask.mp3" loop></audio>
+<!-- MÜZİK -->
+<audio id="music" autoplay loop>
+    <source src="ask.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-const music = document.getElementById("music");
+// HER YER SENİ SEVİYORUM
+for (let i = 0; i < 80; i++) {
+    let text = document.createElement("div");
+    text.className = "love-text";
+    text.innerText = "SENİ SEVİYORUM (eren._.77)";
+    text.style.top = Math.random() * 100 + "vh";
+    text.style.animationDuration = (5 + Math.random() * 10) + "s";
+    document.body.appendChild(text);
+}
+
+// KALPLER
+for (let i = 0; i < 50; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 35) + "px";
+    heart.style.animationDuration = (6 + Math.random() * 8) + "s";
+    document.body.appendChild(heart);
+}
+
+// MÜZİK BAŞLAT (telefon için)
 document.body.addEventListener("click", () => {
-  music.volume = 0.6;
-  music.play();
+    document.getElementById("music").play();
 });
 </script>
 
